@@ -11,12 +11,12 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            background-color: #F8D7DA; /* Soft Pink */
-            color: #5A3E36;
+            background-color: #F5F5DC; /* Cream */
+            color: #800000; /* Maroon */
             overflow: hidden;
         }
         header {
-            background-color: #FFB6C1; /* Light Pink */
+            background-color: #800000; /* Maroon */
             color: white;
             padding: 20px 0;
             font-size: 32px;
@@ -33,7 +33,8 @@
             animation: fadeIn 2s ease-in-out 1s forwards;
         }
         footer {
-            background-color: #F4A7B9; /* Pastel Pink */
+            background-color: #A52A2A; /* Darker Maroon */
+            color: white;
             padding: 15px;
             position: absolute;
             bottom: 0;
@@ -50,50 +51,58 @@
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .floating {
+        .cactus {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: rgba(255, 182, 193, 0.6);
-            border-radius: 50%;
-            animation: floatUp 5s infinite linear;
+            bottom: 0;
+            width: 100px;
+            height: 150px;
+            background-color: #4F7942;
+            border-radius: 20px;
         }
-        @keyframes floatUp {
-            from { transform: translateY(100vh) translateX(0); opacity: 1; }
-            to { transform: translateY(-10vh) translateX(20px); opacity: 0; }
-        }
-        .cute-heart {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #FF69B4;
-            transform: rotate(-45deg);
-            animation: heartFloat 3s infinite ease-in-out;
-        }
-        .cute-heart::before, .cute-heart::after {
+        .cactus::before, .cactus::after {
             content: '';
             position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #FF69B4;
-            border-radius: 50%;
+            width: 40px;
+            height: 80px;
+            background-color: #4F7942;
+            border-radius: 20px;
         }
-        .cute-heart::before {
-            top: -12.5px;
-            left: 0;
+        .cactus::before {
+            left: -30px;
+            top: 30px;
+            transform: rotate(-20deg);
         }
-        .cute-heart::after {
-            left: 12.5px;
+        .cactus::after {
+            right: -30px;
+            top: 30px;
+            transform: rotate(20deg);
+        }
+        .cactus.left {
+            left: 10vw;
+        }
+        .cactus.right {
+            right: 10vw;
+        }
+        .loading-screen {
+            position: fixed;
             top: 0;
-        }
-        @keyframes heartFloat {
-            0% { transform: translateY(0) rotate(-45deg); }
-            50% { transform: translateY(-20px) rotate(-45deg); }
-            100% { transform: translateY(0) rotate(-45deg); }
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #800000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            transition: opacity 1s ease-out;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
+    <div class="loading-screen" id="loadingScreen">Wait a Minute...</div>
     <header>
         Perpustakaan Aqila
     </header>
@@ -110,6 +119,8 @@
                <a href="https://library.usu.ac.id/" target="_blank">Perpustakaan Universitas Sumatera Utara</a>
             </li> 
         </i>
+     <div class="cactus left"></div>
+    <div class="cactus right"></div>
     <h6> </h6>
     <ul>
         <li>
@@ -122,28 +133,36 @@
     <footer>
         &copy; 2025 Perpustakaan Aqila
     </footer>
-    <script>
-        function createFloatingElements() {
-            for (let i = 0; i < 10; i++) {
-                let bubble = document.createElement('div');
-                bubble.classList.add('floating');
-                bubble.style.left = Math.random() * 100 + 'vw';
-                bubble.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                document.body.appendChild(bubble);
-                setTimeout(() => bubble.remove(), 5000);
+     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loadingScreen = document.getElementById("loadingScreen");
+            setTimeout(() => {
+                loadingScreen.style.opacity = "0";
+                setTimeout(() => {
+                    loadingScreen.style.display = "none";
+                }, 1000);
+            }, 2000);
+
+            const header = document.querySelector("header");
+            header.addEventListener("mouseover", function() {
+                header.style.backgroundColor = "#A52A2A";
+            });
+            header.addEventListener("mouseout", function() {
+                header.style.backgroundColor = "#800000";
+            });
+
+            function createDustParticles() {
+                let particle = document.createElement("div");
+                particle.classList.add("dust-particle");
+                particle.style.left = Math.random() * window.innerWidth + "px";
+                document.body.appendChild(particle);
+                setTimeout(() => {
+                    particle.remove();
+                }, 5000);
             }
-        }
-        setInterval(createFloatingElements, 1000);
-        
-        function createCuteHearts() {
-            let heart = document.createElement('div');
-            heart.classList.add('cute-heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 3000);
-        }
-        setInterval(createCuteHearts, 1500);
+
+            setInterval(createDustParticles, 1000);
+        });
     </script>
 </body>
 </html>
