@@ -24,6 +24,24 @@
             font-family: 'Poppins', sans-serif;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: fadeIn 2s ease-in-out;
+             position: relative;
+        }
+        .nav-links {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #F5F5DC;
         }
         main {
             padding: 30px;
