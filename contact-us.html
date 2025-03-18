@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Contact Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
@@ -24,6 +24,24 @@
             font-family: 'Poppins', sans-serif;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: fadeIn 2s ease-in-out;
+              position: relative;
+        }
+        .nav-links {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #F5F5DC;
         }
         main {
             padding: 30px;
@@ -32,28 +50,42 @@
             opacity: 0;
             animation: fadeIn 2s ease-in-out 1s forwards;
         }
-        .biodata-table {
-            width: 60%;
-            margin: 30px auto;
-            border-collapse: collapse;
-            background: #fff;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        .contact-form {
+            width: 50%;
+            margin: 10px auto; /* Mengurangi margin lebih ke atas */
+            background: white;
+            padding: 20px;
             border-radius: 10px;
-            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .biodata-table th, .biodata-table td {
-            padding: 12px;
-            border: 1px solid #800000;
+        .contact-form label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
             text-align: left;
         }
-        .biodata-table th {
-            background-color: #800000;
-            color: white;
-            font-weight: bold;
-        }
-        .biodata-table td {
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #800000;
+            border-radius: 5px;
             background-color: #F5F5DC;
             color: #800000;
+        }
+        .contact-form button {
+            background-color: #800000;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #A52A2A;
         }
         footer {
             background-color: #A52A2A; /* Darker Maroon */
@@ -78,48 +110,30 @@
 </head>
 <body>
     <header>
-       Perpustakaan Aqila
+        Perpustakaan Aqila
+         <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+        </div>
     </header>
     <main>
-        <p>Biodata Diri</p>
-        <table class="biodata-table">
-            <tr>
-                <th>Kategori</th>
-                <th>Detail</th>
-            </tr>
-            <tr>
-                <td>Nama</td>
-                <td>Mumtaz Aqila Faisal</td>
-            </tr>
-            <tr>
-                <td>NIM</td>
-                <td>220709029</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>mumtazaqila4@gmail.com</td>
-            </tr>
-            <tr>
-                <td>Fakultas</td>
-                <td>Ilmu Budaya</td>
-            </tr>
-            <tr>
-                <td>Program Studi</td>
-                <td>Perpustakaan dan Sains Informasi</td>
-            </tr>
-        </table>
+        <div class="contact-form" id="contact">
+            <h2>Hubungi Kami</h2>
+            <form
+                action="https://formspree.io/f/xyzezaej"
+                method="post">
+                <label for="name">Nama</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Pesan</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
     </main>
     <footer>
-        &copy; 2025 Perpustakaan Aqila
+        &copy; 2025 Semua Hak Dilindungi.
     </footer>
- <h4>Halaman lain</h4>
- <ul>
-    <li>
-        <a href="index.html">Home</a>
-    </li>
-    <li>
-        <a href="about.html">About Me</a> 
-    </li>
- </ul>
 </body>
 </html>
